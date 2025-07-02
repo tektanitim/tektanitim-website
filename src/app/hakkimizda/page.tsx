@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { client, urlFor } from '@/utils/sanity';
 import { PortableText, PortableTextComponents } from '@portabletext/react';
 import { motion, Easing } from 'framer-motion';
+import { PortableTextBlock } from '@portabletext/types';
 
 // Framer Motion için varyantlar (animasyon ayarları)
 const fadeInVariants = {
@@ -24,44 +25,43 @@ interface SanityAboutPageContent {
   _id: string;
   heroSection: {
     heading: string;
-    content: any[]; // Portable Text
+    content: PortableTextBlock[]; // Portable Text
     image: { asset: { _ref: string; _type: string } };
   };
   historySection: {
     heading: string;
     establishedYear: string;
-    content: any[]; // Portable Text
+    content: PortableTextBlock[];// Portable Text
     image: { asset: { _ref: string; _type: string } };
   };
   missionVisionSection: {
     heading: string;
-    content: any[]; // Portable Text
+    content: PortableTextBlock[]; // Portable Text
   };
 }
 
 // Portable Text içeriğini özelleştirmek için bileşenler (blog sayfasındakilerle aynı olabilir)
 const components: PortableTextComponents = { // components objesine tip atadık
   types: {
-    image: ({ value, isInline }) => { // value tipini doğrudan buradan alacak
-      // isInline prop'unu kullanmıyorsanız silebilirsiniz
-      return (
-        <figure className="my-6">
-          <Image
-            src={urlFor(value).url()}
-            alt={value.alt || 'Görsel'}
-            width={800}
-            height={500}
-            style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
-            className="rounded-lg shadow-md"
-            quality={80}
-            sizes="(max-width: 768px) 100vw, 800px"
-          />
-          {value.caption && (
-            <figcaption className="text-center text-sm text-gray-500 mt-2">{value.caption}</figcaption>
-          )}
-        </figure>
-      );
-    },
+    image: ({ value }) => {
+  return (
+    <figure className="my-6">
+      <Image
+        src={urlFor(value).url()}
+        alt={value.alt || 'Görsel'}
+        width={800}
+        height={500}
+        style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
+        className="rounded-lg shadow-md"
+        quality={80}
+        sizes="(max-width: 768px) 100vw, 800px"
+      />
+      {value.caption && (
+        <figcaption className="text-center text-sm text-gray-500 mt-2">{value.caption}</figcaption>
+      )}
+    </figure>
+  );
+},
   },
   block: {
     h1: ({ children }) => <h1 className="text-4xl font-bold my-4">{children}</h1>,

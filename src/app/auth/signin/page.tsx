@@ -1,7 +1,7 @@
 // app/auth/signin/page.tsx
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"; // authOptions yolu
+import { authOptions } from "@/lib/auth"; // NextAuth.js yapılandırma dosyanızın yolu
 import SignInForm from "@/components/auth/SignInForm";
 
 export default async function SignInPage() {

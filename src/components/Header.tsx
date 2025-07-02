@@ -19,7 +19,7 @@ import {
 
 import { Dialog } from "@headlessui/react";
 
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 import { client } from "@/sanity/client";
 import { getAllCategoriesWithIconsQuery } from "@/sanity/queries";

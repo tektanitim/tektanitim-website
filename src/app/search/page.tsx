@@ -66,13 +66,13 @@ export default function SearchPage() {
             }
         }
         fetchSearchResults();
-    }, [searchTerm]);
+    }, [searchTerm, searchParams]);
 
     return (
         <div className="container mx-auto p-4 min-h-screen">
             <h1 className="text-3xl font-bold mb-6 text-gray-800">
                 <FiSearch className="inline-block mr-2 text-blue-600" size={28} />
-                Arama Sonuçları: <span className="text-blue-600">"{searchTerm || 'boş'}"</span>
+                Arama Sonuçları: <span className="text-blue-600">&quot;{searchTerm || 'boş'}&quot;</span>
             </h1>
 
             {loading ? (
@@ -105,7 +105,7 @@ export default function SearchPage() {
                 </div>
             ) : (
                 <p className="text-center text-lg text-gray-600 mt-10">
-                    "{searchTerm}" için hiçbir sonuç bulunamadı.
+                    {searchTerm} için hiçbir sonuç bulunamadı.
                     <br/>
                     Lütfen farklı bir terimle arama yapmayı deneyin.
                 </p>

@@ -4,7 +4,7 @@ import React from 'react';
 import { useFavorites } from "@/context/FavoritesContext";
 import Image from "next/image";
 import Link from "next/link";
-import { FiTrash2, FiHeart } from 'react-icons/fi';
+import { FiTrash2 } from 'react-icons/fi';
 
 export default function FavoritesPage() {
   const { favorites, removeFromFavorites } = useFavorites();

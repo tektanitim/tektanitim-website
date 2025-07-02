@@ -44,11 +44,11 @@ export default async function CategoryPage({
   params,
   searchParams,
 }: {
-  params: { slug: string };
-  searchParams: { sort?: string };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ sort?: string }>; // searchParams'ı Promise olarak tanımlıyoruz
 }) {
-  const { slug } = params;
-  const sort = searchParams.sort || "";
+  const { slug } = await params; // params'ı asenkron olarak çözüyoruz
+  const { sort = "" } = await searchParams; // searchParams'ı asenkron olarak çözüyoruz, varsayılan değer ""
   const products: Product[] = await client.fetch(productQuery(slug, sort), { slug });
 
   return (
@@ -65,9 +65,9 @@ export default async function CategoryPage({
           {products.map((product) => (
             <Link href={`/product/${product.slug.current}`} key={product._id}>
               <div className="border border-gray-100 rounded-lg shadow p-4 dark:hover:bg-gray-700 hover:shadow-lg transition-all duration-200">
-                <Image 
-                  src={product.imageUrl} 
-                  alt={product.title} 
+                <Image
+                  src={product.imageUrl}
+                  alt={product.title}
                   className="w-full h-48 object-cover mb-4"
                   width={600}
                   height={600}

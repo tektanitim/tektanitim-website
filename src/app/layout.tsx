@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth"; // Adjust the path as necessary
 import SessionProvider from "@/components/SessionProvider";
 
 const geistSans = Geist({

@@ -14,7 +14,7 @@ export default function ServiceCard({ Icon, title, description }: ServiceCardPro
         <Icon className="h-8 w-8 text-blue-600" /> {/* İkonun boyutunu ve rengini ayarlıyoruz */}
       </div>
       <h3 className="text-blue-500 text-lg font-semilight mb-2">{title}</h3>
-      
+      <p className="text-gray-600">{description}</p>
     </div>
   );
 }
