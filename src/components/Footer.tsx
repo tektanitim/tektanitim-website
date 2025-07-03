@@ -40,9 +40,9 @@ export default function Footer() {
           <h4 className="font-semibold text-gray-800 mb-3">Linkler</h4>
           <ul className="space-y-2">
             <li><Link href="/" className="hover:text-blue-600">Anasayfa</Link></li>
-            <li><Link href="/about" className="hover:text-blue-600">Hakkımızda</Link></li>
+            <li><Link href="/hakkimizda" className="hover:text-blue-600">Hakkımızda</Link></li>
             <li><Link href="/blog" className="hover:text-blue-600">Blog</Link></li>
-            <li><Link href="/contact" className="hover:text-blue-600">İletişim</Link></li>
+            <li><Link href="/iletisim" className="hover:text-blue-600">İletişim</Link></li>
           </ul>
         </div>
 
