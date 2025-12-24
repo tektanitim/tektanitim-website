@@ -6,7 +6,6 @@ import { useState, useEffect } from "react"; // <-- Bu satır düzeltildi!
 import { useRouter } from 'next/navigation';
 import {
   FiSearch,
-  FiHeart,
   FiShoppingCart,
   FiUser,
   FiMenu,
@@ -14,7 +13,8 @@ import {
   FiChevronDown,
   FiLogOut,
   FiUserPlus,
-  FiLogIn
+  FiLogIn,
+  FiMessageCircle
 } from "react-icons/fi"; 
 
 import { Dialog } from "@headlessui/react";
@@ -23,8 +23,6 @@ import { useSession, signOut } from "next-auth/react";
 
 import { client } from "@/sanity/client";
 import { getAllCategoriesWithIconsQuery } from "@/sanity/queries";
-import { useCart } from "@/context/CartContext";
-import { useFavorites } from "@/context/FavoritesContext";
 type Category = {
   _id: string;
   title: string;
@@ -44,8 +42,7 @@ export default function Header() {
   const { data: session, status } = useSession();
   const loading = status === "loading";
 
-  const { getCartItemCount } = useCart();
-  const { getFavoriteCount } = useFavorites(); // useFavorites hook'undan favori sayısını al
+
 
 
   useEffect(() => {
@@ -69,12 +66,11 @@ export default function Header() {
     }
   };
 
-  const cartItemCount = getCartItemCount();
-  const favoriteItemCount = getFavoriteCount(); // Favori ürün sayısını al
+
 
 
   const closeUserMenu = () => setIsUserMenuOpen(false);
-
+  const whatsappLink = "https://wa.me/905053574703";
   return (
     <header className="bg-white shadow-sm relative z-40">
       {/* Üst Bar */}
@@ -112,24 +108,16 @@ export default function Header() {
 
           {/* İkonlar */}
           <div className="flex items-center space-x-4">
-            {/* Favori ikonu güncellendi */}
-            <Link href="/favorites" className="p-2 text-gray-600 hover:text-blue-600 relative">
-              <FiHeart size={20} />
-              {favoriteItemCount > 0 && ( // Sadece favori varsa sayıyı göster
-                <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  {favoriteItemCount}
-                </span>
-              )}
-            </Link>
-            {/* Sepet ikonu */}
-            <Link href="/cart" className="p-2 text-gray-600 hover:text-blue-600 relative">
-              <FiShoppingCart size={20} />
-              {cartItemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  {cartItemCount}
-                </span>
-              )}
-            </Link>
+
+           <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 text-green-600 hover:text-green-700"
+            aria-label="WhatsApp ile iletişime geç"
+          >
+            <FiMessageCircle size={22} />
+          </a>
             {/* Kullanıcı İkonu ve Menüsü */}
             <div className="relative">
               <button
@@ -272,6 +260,17 @@ export default function Header() {
           <div className="relative bg-white z-50 h-[85vh] mt-[15vh] overflow-y-auto overscroll-contain">
             <div className="p-4 bg-blue-50 sticky top-0">
               {/* Arama alanı */}
+              <div className="flex justify-center py-3">
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-green-600 font-medium"
+                >
+                  <FiMessageCircle size={22} />
+                  WhatsApp ile İletişim
+                </a>
+              </div>
               <div className="relative">
                 <input
                   type="text"
