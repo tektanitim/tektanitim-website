@@ -17,6 +17,7 @@
     "@sanity/image-url": "^1.1.0",
     "@sanity/types": "^3.95.0",
     "@supabase/supabase-js": "^2.50.2",
+    "@tailwindcss/oxide": "4.1.18",
     "animejs": "^4.0.2",
     "aos": "^2.3.4",
     "framer-motion": "^12.19.2",
