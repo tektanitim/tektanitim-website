@@ -8,6 +8,7 @@ import { FavoritesProvider } from "@/context/FavoritesContext";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth"; // Adjust the path as necessary
 import SessionProvider from "@/components/SessionProvider";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,6 +51,7 @@ export default async function RootLayout({
         </FavoritesProvider>
         </CartProvider>
         </SessionProvider>
+        <WhatsAppButton />
       </body>
 
     </html>
