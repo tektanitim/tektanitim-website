@@ -73,7 +73,7 @@ export default async function CategoryPage({
                   height={600}
                 />
                 <h2 className="text-lg font-semibold">{product.title}</h2>
-                <p className="text-blue-600 font-bold">${product.price}</p>
+                <p className="text-blue-600 font-bold">{product.price} TL</p>
               </div>
             </Link>
           ))}
